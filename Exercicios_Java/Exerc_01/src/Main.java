@@ -1,20 +1,18 @@
 import java.util.Scanner;
-
+/*
+Escreva um código onde o usuário entra com um número e seja gerada a tabuada de 1 até 10 desse número;
+*/
 public class Main {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite a Tabuada que deseja imprimir");
+        int NumeroTabuada = scanner.nextInt();
+        System.out.println(" ");
+        System.out.println(" Inicio ");
 
-        String nome = scanner.next();
-        String tipoConta = scanner.next();
-
-        if (tipoConta.equals("corrente") || tipoConta.equals("poupanca") || tipoConta.equals("investimento")) {
-
-            System.out.println("Bem-vindo(a), " + nome + " ! Sua conta " + tipoConta + " esta pronta para uso.");
-        } else {
-            System.out.println("Tipo de conta invalido.");
+        for (int i = 1 ; i <= 10 ; i++){
+            System.out.println(NumeroTabuada*i);
         }
-
         scanner.close();
     }
 }
