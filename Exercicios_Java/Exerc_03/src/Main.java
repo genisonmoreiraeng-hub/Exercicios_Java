@@ -8,33 +8,62 @@ de números informados, incluindo os números informados e em
 ordem decrescente;
 
 */
-public class Main {
-        
-    public static float imcCalc(float a, float b) {
-        return b/(a*a);
-    }
+public class Main {        
+  
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite sua Altura(sem ponto) e Peso");
-        float Altura = scanner.nextInt();
-        float Peso = scanner.nextInt();
+        System.out.print("Digite o Primeiro Numero: ");
+        int NumeroInicial = scanner.nextInt();
 
-        float result = imcCalc(Altura/100, Peso);
+        System.out.print("Digite o Segundo Numero: ");
+        int NumeroFinal = scanner.nextInt();
 
-        if (result <= 18.5 ){
-            System.out.println("Abaixo do peso");
-        }else if (result >= 18.6 && result <= 24.9 ){
-            System.out.println("Peso ideal");
-        }else if (result >= 25.0 && result <= 29.9 ){
-            System.out.println("Levemente acima do peso");
-        }else if (result >= 30.0 && result <= 34.9 ){
-            System.out.println("Obesidade Grau I");
-        }else if (result >= 35.0 && result <= 39.9 ){
-            System.out.println("Obesidade Grau II (Severa)");
-        }else{
-            System.out.println("Obesidade III (Mórbida)");
+        // Logica para garantir que o numero digitado seja maior que o primeiro
+        while (NumeroFinal<NumeroInicial) {
+            System.out.print("Tente Novamente, agora digite um numero Maior que o primeiro: ");
+            NumeroFinal = scanner.nextInt();
         }
+       
+        String escolha; // declarando variavel fora da logica "do while"
 
-        scanner.close();
+        // Logica "do while" para garantir que o usuario Digite Impar ou Par
+        do {
+            System.out.print("Digite 'Impar' ou 'Par': ");
+            escolha = scanner.nextLine();
+
+        } while ((!escolha.equalsIgnoreCase("Impar") || !escolha.equalsIgnoreCase("impar")) && 
+                 (!escolha.equalsIgnoreCase("Par")   || !escolha.equalsIgnoreCase("par"  )));
+
+        
+        if (escolha.equals("impar")){escolha = "Impar";} // converte para maiusculo
+        if (escolha.equals("par")){escolha = "Par";}     // converte para maiusculo
+
+        for (int i = NumeroFinal; i >= NumeroInicial ; --i){
+
+            if (escolha.equals("Impar")){
+                if (i % 2 == 1) {
+                    System.out.println(i); //Só imprimi numeros Impares
+                    
+                } else if (i == NumeroFinal){System.out.println(NumeroFinal);// colocar numero Final mesmo se for Par na logica do Impar
+
+                } else if (i == NumeroInicial){System.out.println(NumeroInicial);} // colocar numero inicial mesmo se for Par na logica do Impar           
+
+                    
+            }
+            if (escolha.equals("Par")){
+                if (i % 2 == 0) {
+                    System.out.println(i); //Só imprimi numeros Pares
+
+                } else if (i == NumeroFinal){System.out.println(NumeroFinal);// colocar numero Final mesmo se for Impar na logica do Par
+
+                } else if (i == NumeroInicial){System.out.println(NumeroInicial);} // colocar numero inicial mesmo se for Impar na logica do Par
+                
+            }           
+        }     
+        scanner.close();       
     }
 }
