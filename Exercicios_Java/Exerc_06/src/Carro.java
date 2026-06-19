@@ -73,6 +73,15 @@ public class Carro {
         }
     }
     public void desligar(){
+
+        if (this.ligado && this.marcha == 0 && this.velocidade != 0){
+
+          while ((verificarVelocidade()!=0) ){
+                diminuirVelocidade();
+            } 
+
+        }
+
         if (this.ligado && this.marcha == 0 && this.velocidade == 0) {
             this.ligado = false;
             System.out.println("Carro desligado.");
@@ -81,13 +90,17 @@ public class Carro {
         }
     }
     public void acelerar(){
-        if (!this.ligado) return;
+        if (!this.ligado){
+            System.out.println("Carro desligado.");
+            return;
+        } 
         
         // Regra: Não acelera em ponto morto
         if (marcha == 0) {
             System.out.println("Coloque uma marcha para acelerar.");
             return;
         }
+
 
         // Regra: Máximo 120km
         if (this.velocidade < 120) {
@@ -96,7 +109,10 @@ public class Carro {
         }
     }
     public void diminuirVelocidade(){
-        if (!this.ligado) return;
+        if (!this.ligado) {
+            System.out.println("Carro desligado.");
+            return;
+        } 
         if (this.velocidade > 0) {
             this.velocidade--;
             System.out.println("Velocidade: " + this.velocidade + "km/h");
@@ -104,7 +120,10 @@ public class Carro {
     
     }
     public void virar(String direcao){
-        if (!this.ligado) return;
+        if (!this.ligado) {
+            System.out.println("Carro desligado.");
+            return;
+        } 
 
         if (this.velocidade >= 1 && this.velocidade <= 40) {
             System.out.println("Virando para " + direcao);
@@ -114,7 +133,10 @@ public class Carro {
     }
 
     public void trocarMarcha(int novaMarcha){
-        if (!this.ligado) return;
+        if (!this.ligado) {
+            System.out.println("Carro desligado.");
+            return;
+        } 
 
         // Regra: Não pular marchas (deve ser +1 ou -1)
         if (Math.abs(novaMarcha - this.marcha) != 1 && !(marcha == 0 && novaMarcha == 1)) {
@@ -131,6 +153,23 @@ public class Carro {
         this.marcha = novaMarcha;
     
     }
+
+    public boolean voltaValidacaoVelocidade(){
+        //##############################################
+
+        if (validarVelocidadeParaMarcha(marcha)) {            
+            return true;
+        } else {
+            System.out.println("Erro: Velocidade incompatível com a marcha desejada.");
+            
+        }
+        //#################################################
+        return false;
+
+      
+    }
+
+
     private boolean validarVelocidadeParaMarcha(int m) {
         return switch (m) {
             case 0 -> true;
