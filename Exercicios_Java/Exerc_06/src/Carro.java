@@ -151,19 +151,5 @@ public class Carro {
     }
 
 
-    public void Velocity(String plusorminus, int cambio, int speed) {
-        
-        trocarMarcha(cambio);
-        int i = verificarVelocidade();
-        while (i!=speed) {
 
-           if (plusorminus.equals("acelerar")) {
-                acelerar();
-           } else if (plusorminus.equals("diminuirVelocidade")){
-                diminuirVelocidade();
-           }           
-            i = verificarVelocidade();
-        }
-
-    }
 }

@@ -1,60 +1,91 @@
+import java.util.Scanner;
+
 public class App {
 
+
+    
+    private final static Scanner scanner = new Scanner(System.in);
+
+    private final static Carro meuCarro = new Carro();
+    static int marcha;
+
     public static void main(String[] args) throws Exception {
+        
+        
+
+        var option = -1;
+
+        do{
+            System.out.println("##### Esolha a Opcão #####");
+            System.out.println("1 - Liga o Carro ");
+            System.out.println("2 - Desliga o Carro ");
+            System.out.println("3 - Acelera ");
+            System.out.println("4 - Desacelera ");
+            System.out.println("5 - Muda de Direção ");
+            System.out.println("6 - Muda a MArcha ");
+            System.out.println("7 - Verifica a Velocidade");
+            System.out.println("0 - Sair");
+            System.out.println("##########################");
+            option = scanner.nextInt();
+            
+            switch (option) {
+                case 1 -> meuCarro.ligar();
+                case 2 -> meuCarro.desligar();
+                case 3 -> SpeedPlus();  
+                case 4 -> SpeedMinus();
+                case 5 -> TurnTheCorner();
+                case 6 -> ChangeCambio(marcha);
+                case 7 -> VerifyVelocity();
+
+                case 0 -> System.exit(option =0);  
+            
+                default -> System.out.println(" Operação Invalida ");
+                    
+            }
 
 
-       Carro meuCarro = new Carro();
+        }while (option !=0);
 
-        // 1. Testando ligar o carro
-        meuCarro.ligar();
+    }
 
-        String plusorminus = "acelerar";
-        int cambio = 1;
-        int speed = 21;
-        meuCarro.Velocity(plusorminus,cambio,speed);
- /*
-        // 3. Colocando na primeira marcha e acelerando
-        meuCarro.trocarMarcha(1);
-        while (meuCarro.verificarVelocidade()!=21) {
-            meuCarro.acelerar(); // Velocidade 1
-        }
+    private static void ChangeCambio(int marcha) {
+        System.out.println("Digite a MArcha");
+        marcha = scanner.nextInt();
+        meuCarro.trocarMarcha(marcha);
 
-        meuCarro.trocarMarcha(2);
-        while (meuCarro.verificarVelocidade()!=41) {
-            meuCarro.acelerar(); // Velocidade 1
-        }
+    }
 
-        meuCarro.trocarMarcha(3);
-        while (meuCarro.verificarVelocidade()!=61) {
-            meuCarro.acelerar(); // Velocidade 1
+    private static int VerifyVelocity() {
+        return meuCarro.verificarVelocidade();
+    }
+
+    private static void TurnTheCorner() {
+        meuCarro.virar(null);
+    }
+
+    private static void SpeedMinus() {
+        System.out.println("##########################\n");
+        System.out.print("Velocidade esta : " +meuCarro.verificarVelocidade()+"km_h\n");
+        System.out.print("A MArcha esta : " + meuCarro.getMarcha());
+        System.out.println("\n##########################");
+        System.out.println("Digite até a Km/h");
+        int km = scanner.nextInt();
+        while (meuCarro.verificarVelocidade()!=km) {
+            meuCarro.diminuirVelocidade(); 
         }
-        meuCarro.trocarMarcha(4);
-        while (meuCarro.verificarVelocidade()!=81) {
-            meuCarro.acelerar(); // Velocidade 1
+        
+    }
+
+    private static void SpeedPlus() {
+        System.out.println("##########################\n");
+        System.out.print("Velocidade esta : " + meuCarro.verificarVelocidade()+"km_h\n");
+        System.out.print("A MArcha esta : " +meuCarro.getMarcha());
+        System.out.println("\n##########################");
+        System.out.println("Digite até a Km/h");
+        int km = scanner.nextInt();
+        while (meuCarro.verificarVelocidade()!=km) {
+            meuCarro.acelerar(); 
         }
-        meuCarro.trocarMarcha(5);
-        while (meuCarro.verificarVelocidade()!=101) {
-            meuCarro.acelerar(); // Velocidade 1
-        }
-        meuCarro.trocarMarcha(6);
-        while (meuCarro.verificarVelocidade()!=120) {
-            meuCarro.acelerar(); // Velocidade 1
-        }
-*/
-        // 4. Testando virar
-        meuCarro.virar("Direita");
-        // 5. Tentando pular marcha (deve falhar - regra não permite pular)
-        meuCarro.trocarMarcha(3); 
-        // 6. Trocando de marcha corretamente
-        meuCarro.trocarMarcha(2);        
-        // 7. Testando limites de velocidade
-        System.out.println("Velocidade atual: " + meuCarro.verificarVelocidade() + " km/h");        
-        // 8. Testando desligar
-        meuCarro.desligar(); // Deve falhar (velocidade > 0)        
-        // Parando o carro para desligar
-        meuCarro.diminuirVelocidade();
-        meuCarro.diminuirVelocidade();
-        meuCarro.trocarMarcha(0);
-        meuCarro.desligar(); // Agora deve funcionar
+        
     }
 }
