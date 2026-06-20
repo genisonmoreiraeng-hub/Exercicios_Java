@@ -4,6 +4,10 @@ public class Pet {
 
     public static boolean limpo;
 
+    public Pet(String nome) {
+        this.nome = nome;
+        this.limpo = false;
+    }
     
     //################ Sets e Gets ##################
     public static String getNome() {
@@ -20,6 +24,8 @@ public class Pet {
         Pet.limpo = limpo;
     }
     // Constructor ############
+
+
 
   
 
