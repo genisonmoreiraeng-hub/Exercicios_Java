@@ -5,9 +5,10 @@ public class App {
 
     private final static MaquinaBanho mquina = new MaquinaBanho();
     private final static Scanner scanner = new Scanner(System.in);
+    
     public static void main(String[] args) throws Exception {
        var option = -1;
-
+        ;
         do{
             System.out.println("##### Esolha a Opcão #####");
             System.out.println("1 - Dar banho no pet ");
@@ -28,10 +29,12 @@ public class App {
                 //case 1 -> meuCarro.ligar();
                 case 2 -> AbasteceAgua();
                 case 3 -> AbasteceShampoo();  
-                //case 4 -> SpeedMinus();
-                //case 5 -> TurnTheCorner();
-                //case 6 -> ChangeCambio(marcha);
-                //case 7 -> VerifyVelocity();
+                case 4 -> QualNivelAgua();
+                case 5 -> QualNivelShampoo();
+                case 6 -> VerificaSeTemPet();
+                case 7 -> ColocaTotoNaMaquina();
+                //case 8 -> "XXXXXXXXX";
+                //case 9 -> "XXXXXXXXX";
                 case 0 -> System.exit(option =0);             
                 default -> System.out.println(" Operação Invalida ");
                     
@@ -44,17 +47,42 @@ public class App {
     //System.out.println("2 - Desliga o Carro ");
 
     }
+    private static void ColocaTotoNaMaquina() {
+        System.out.println("Qual é o Nome do toto ? ");
+        var animal = scanner.nextLine(); // Comentar essa parte 
+        var pet = new Pet(animal);
+        
+        mquina.colocarPet(pet);
+    }
+    private static boolean VerificaSeTemPet() {
+        if (mquina.temPet()){
+            System.out.println("A Maquina esta Ocupada ");
+            
+        }else {
+            System.out.println("A Maquina esta Livre ");
+            
+        }   
+        return false;
+    }
+    private static int QualNivelShampoo() {
+        System.out.println("A Maquina esta com " + mquina.verificarNivelShampoo() + " Litros De Shampoo") ;
+        return 0;
+    }
+    private static int QualNivelAgua() {        
+        System.out.println("A Maquina esta com " + mquina.verificarNivelAgua()+ " Litros de Agua") ;
+        return 0;
+    }
     private static void AbasteceShampoo() {
         if (mquina.verificarNivelShampoo()!=10){
             mquina.abastecerShampoo();
         }
-        System.out.println("Reservatorio de Shampoo no Maximo " + mquina.getNivelShampoo()+" Litros");
+        System.out.println("A Maquina esta com Shampoo no Maximo " + mquina.verificarNivelShampoo() +" Litros");
     }
     private static void AbasteceAgua() {
 
        if(mquina.verificarNivelAgua()!=30) {
             mquina.abastecerAgua();                   
         }
-        System.out.println("Caixa esta com Agua no Maximo " + mquina.getNivelAgua()+" Litros");
+        System.out.println("A Maquina esta com Agua no Maximo " + mquina.verificarNivelAgua()+" Litros");
     }
 }

@@ -1,20 +1,20 @@
 public class Pet {
 
-    public static String nome ;
+    private  static String nome ;
 
-    public static boolean limpo;
+    private  static boolean limpo;
 
-    public Pet(String nome) {
-        this.nome = nome;
-        this.limpo = false;
+    public Pet(String _nome) {
+        nome = _nome;
+        limpo = false;
     }
     
     //################ Sets e Gets ##################
     public static String getNome() {
         return nome;
     }
-    public static void setNome(String nome) {
-        Pet.nome = nome;
+    public static void setNome(String _nome) {
+        Pet.nome = _nome;
     }
         
     public static boolean isLimpo() {
