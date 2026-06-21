@@ -99,11 +99,13 @@ public class MaquinaBanho {
     }
 
     public void colocarPet(Pet pet) {
-        // implementar
+        setPet(pet);
+        System.out.println("Pet de Nome : " + Pet.getNome() + " esta na Maquina" );
     }
 
     public Pet retirarPet() {
-        // implementar
+        setPet(pet);
+        System.out.println("Pet de Nome : " + Pet.getNome() + " foi retirado da Maquina" );
         return null;
     }
 
@@ -114,17 +116,4 @@ public class MaquinaBanho {
     public void limparMaquina() {
         // implementar
     }
-
-  
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -24,14 +24,4 @@ public class Pet {
         Pet.limpo = limpo;
     }
     // Constructor ############
-
-
-
-  
-
-    
-    
-
-
-
 }

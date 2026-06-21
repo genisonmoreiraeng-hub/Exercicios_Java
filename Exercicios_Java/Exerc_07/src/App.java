@@ -33,7 +33,7 @@ public class App {
                 case 5 -> QualNivelShampoo();
                 case 6 -> VerificaSeTemPet();
                 case 7 -> ColocaTotoNaMaquina();
-                //case 8 -> "XXXXXXXXX";
+                case 8 -> RetiraTotoDaMaquina();
                 //case 9 -> "XXXXXXXXX";
                 case 0 -> System.exit(option =0);             
                 default -> System.out.println(" Operação Invalida ");
@@ -47,11 +47,15 @@ public class App {
     //System.out.println("2 - Desliga o Carro ");
 
     }
+    private static Pet RetiraTotoDaMaquina() {
+        mquina.setPet(null);
+        return mquina.retirarPet() ;
+
+    }
     private static void ColocaTotoNaMaquina() {
         System.out.println("Qual é o Nome do toto ? ");
-        var animal = scanner.nextLine(); // Comentar essa parte 
-        var pet = new Pet(animal);
-        
+        var animal = scanner.next(); 
+        var pet = new Pet(animal);  //cria um objeto da classe Pet
         mquina.colocarPet(pet);
     }
     private static boolean VerificaSeTemPet() {
