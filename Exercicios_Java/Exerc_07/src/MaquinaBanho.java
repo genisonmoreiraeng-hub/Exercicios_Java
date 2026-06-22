@@ -28,7 +28,7 @@ public class MaquinaBanho {
     private int nivelAgua;
     private int nivelShampoo;
     private Pet pet;
-    private boolean precisaLimpeza;
+    private boolean precisaLimpeza = false;
 
     public MaquinaBanho(){
 
@@ -68,7 +68,7 @@ public class MaquinaBanho {
     }
     
     public boolean isPrecisaLimpeza() {
-        return precisaLimpeza;
+        return this.precisaLimpeza;
     }
 
     public void setPrecisaLimpeza(boolean precisaLimpeza) {
@@ -102,11 +102,13 @@ public class MaquinaBanho {
     public void colocarPet(Pet pet) {
         setPet(pet);
         System.out.println("Pet de Nome : " + Pet.getNome() + " esta na Maquina" );
+        setPrecisaLimpeza(precisaLimpeza);
     }
 
     public Pet retirarPet() {
         setPet(pet);
         System.out.println("Pet de Nome : " + Pet.getNome() + " foi retirado da Maquina" );
+        setPet(null);// novo
         return null;
     }
 
@@ -117,6 +119,7 @@ public class MaquinaBanho {
                 this.nivelAgua -= 10; 
                 this.nivelShampoo -= 2;
                 Pet.setLimpo(true);
+                
             }else{
                 System.out.println("Precisa colocar Pet na maquina" );
             }
@@ -131,10 +134,12 @@ public class MaquinaBanho {
             System.out.println("A Maquina esta limpa" );
         }else{
             
-                    if ((verificarNivelAgua()>=3) && (verificarNivelShampoo() >= 1)){
+        if ((verificarNivelAgua()>=3) && (verificarNivelShampoo() >= 1)){
             this.nivelAgua -= 3; 
             this.nivelShampoo -= 1; 
             System.out.println("A Maquina esta limpa" );
+            
+            setPrecisaLimpeza(false);
          }else{
             System.out.println("Precisa Abastecer a Maquina,\n Verifique Agua e Shampoo" );
          }

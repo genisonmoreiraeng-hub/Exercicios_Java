@@ -40,20 +40,35 @@ public class App {
         }while (option !=0);
     }
     private static Pet RetiraTotoDaMaquina() {
-        mquina.setPet(null);
+        
+        if (Pet.isLimpo()){
+            
+        }else{
+            var u = true;
+            mquina.setPrecisaLimpeza(u);
+           
+        }
         return mquina.retirarPet() ;
 
-    }
+        }
     private static void ColocaTotoNaMaquina() {
-        if (mquina.temPet()){
-           System.out.println("A Maquina esta Ocupada ");
-        }else {
-            System.out.println("Qual é o Nome do toto ? ");
-            scanner.nextLine(); // limpa o Enter que ficou no buffer
-            var animal = scanner.nextLine(); 
-            var pet = new Pet(animal);  //cria um objeto da classe Pet
-            mquina.colocarPet(pet);
-        }        
+        
+        if (mquina.isPrecisaLimpeza()==false){
+
+            if (mquina.temPet()){
+                System.out.println("A Maquina esta Ocupada ");
+            }else {
+                System.out.println("Qual é o Nome do toto ? ");
+                scanner.nextLine(); // limpa o Enter que ficou no buffer
+                var animal = scanner.nextLine(); 
+                var pet = new Pet(animal);  //cria um objeto da classe Pet
+                mquina.colocarPet(pet);
+            } 
+
+        }else{
+            System.out.println("Precisa Limpar a Maquina ");
+        }
+               
     }
     private static boolean VerificaSeTemPet() {
         if (mquina.temPet()){
@@ -73,7 +88,7 @@ public class App {
         return 0;
     }
     private static void AbasteceShampoo() {
-        if (mquina.verificarNivelShampoo()!=10){
+        if (mquina.verificarNivelShampoo()<10){
             mquina.abastecerShampoo();
             System.out.println("A Maquina esta " + mquina.verificarNivelShampoo() +" Litros de Shampoo");
         }else {
@@ -82,7 +97,7 @@ public class App {
     }
     private static void AbasteceAgua() {
 
-       if(mquina.verificarNivelAgua()!=30) {
+       if(mquina.verificarNivelAgua()<30) {
             mquina.abastecerAgua();  
             System.out.println("A Maquina esta com " + mquina.verificarNivelAgua()+" Litros de Agua ");                 
         }else{
