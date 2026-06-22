@@ -91,6 +91,7 @@ public class MaquinaBanho {
     }
 
     public int verificarNivelShampoo() {
+
         return nivelShampoo;
     }
 
@@ -110,10 +111,36 @@ public class MaquinaBanho {
     }
 
     public void darBanho() {
-        // implementar
+        
+        if ((verificarNivelAgua()>=10) && (verificarNivelShampoo() >= 2)){
+            if (temPet() ){
+                this.nivelAgua -= 10; 
+                this.nivelShampoo -= 2;
+                Pet.setLimpo(true);
+            }else{
+                System.out.println("Precisa colocar Pet na maquina" );
+            }
+        }else{
+            System.out.println("Precisa Abastecer a Maquina,\n Verifique Agua e Shampoo" );
+        }
+
     }
 
     public void limparMaquina() {
-        // implementar
+        if (Pet.isLimpo()){
+            System.out.println("A Maquina esta limpa" );
+        }else{
+            
+                    if ((verificarNivelAgua()>=3) && (verificarNivelShampoo() >= 1)){
+            this.nivelAgua -= 3; 
+            this.nivelShampoo -= 1; 
+            System.out.println("A Maquina esta limpa" );
+         }else{
+            System.out.println("Precisa Abastecer a Maquina,\n Verifique Agua e Shampoo" );
+         }
+        }
+
+        
+        
     }
 }

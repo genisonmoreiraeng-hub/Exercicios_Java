@@ -15,8 +15,7 @@ public class Pet {
     }
     public static void setNome(String _nome) {
         Pet.nome = _nome;
-    }
-        
+    }        
     public static boolean isLimpo() {
         return limpo;
     }

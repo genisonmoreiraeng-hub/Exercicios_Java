@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class App {
 
-
     private final static MaquinaBanho mquina = new MaquinaBanho();
     private final static Scanner scanner = new Scanner(System.in);
     
     public static void main(String[] args) throws Exception {
        var option = -1;
-        ;
+        
         do{
             System.out.println("##### Esolha a Opcão #####");
             System.out.println("1 - Dar banho no pet ");
@@ -22,11 +21,10 @@ public class App {
             System.out.println("9 - limpar maquina ");
             System.out.println("0 - Sair");
             System.out.println("##########################");
-            option = scanner.nextInt();
-            
+            option = scanner.nextInt();            
 
             switch (option) {
-                //case 1 -> meuCarro.ligar();
+                case 1 -> mquina.darBanho();
                 case 2 -> AbasteceAgua();
                 case 3 -> AbasteceShampoo();  
                 case 4 -> QualNivelAgua();
@@ -34,18 +32,12 @@ public class App {
                 case 6 -> VerificaSeTemPet();
                 case 7 -> ColocaTotoNaMaquina();
                 case 8 -> RetiraTotoDaMaquina();
-                //case 9 -> "XXXXXXXXX";
+                case 9 -> mquina.limparMaquina();
                 case 0 -> System.exit(option =0);             
-                default -> System.out.println(" Operação Invalida ");
-                    
+                default -> System.out.println(" Operação Invalida ");                    
             }
 
         }while (option !=0);
-
-        
-
-    //System.out.println("2 - Desliga o Carro ");
-
     }
     private static Pet RetiraTotoDaMaquina() {
         mquina.setPet(null);
@@ -53,18 +45,22 @@ public class App {
 
     }
     private static void ColocaTotoNaMaquina() {
-        System.out.println("Qual é o Nome do toto ? ");
-        var animal = scanner.next(); 
-        var pet = new Pet(animal);  //cria um objeto da classe Pet
-        mquina.colocarPet(pet);
+        if (mquina.temPet()){
+           System.out.println("A Maquina esta Ocupada ");
+        }else {
+            System.out.println("Qual é o Nome do toto ? ");
+            scanner.nextLine(); // limpa o Enter que ficou no buffer
+            var animal = scanner.nextLine(); 
+            var pet = new Pet(animal);  //cria um objeto da classe Pet
+            mquina.colocarPet(pet);
+        }        
     }
     private static boolean VerificaSeTemPet() {
         if (mquina.temPet()){
             System.out.println("A Maquina esta Ocupada ");
             
         }else {
-            System.out.println("A Maquina esta Livre ");
-            
+            System.out.println("A Maquina esta Livre ");            
         }   
         return false;
     }
@@ -79,14 +75,19 @@ public class App {
     private static void AbasteceShampoo() {
         if (mquina.verificarNivelShampoo()!=10){
             mquina.abastecerShampoo();
-        }
-        System.out.println("A Maquina esta com Shampoo no Maximo " + mquina.verificarNivelShampoo() +" Litros");
+            System.out.println("A Maquina esta " + mquina.verificarNivelShampoo() +" Litros de Shampoo");
+        }else {
+            System.out.println("A Maquina esta com Shampoo no Maximo " + mquina.verificarNivelShampoo() +" Litros");
+        }        
     }
     private static void AbasteceAgua() {
 
        if(mquina.verificarNivelAgua()!=30) {
-            mquina.abastecerAgua();                   
+            mquina.abastecerAgua();  
+            System.out.println("A Maquina esta com " + mquina.verificarNivelAgua()+" Litros de Agua ");                 
+        }else{
+            System.out.println("A Maquina esta com Agua no Maximo " + mquina.verificarNivelAgua()+" Litros");
         }
-        System.out.println("A Maquina esta com Agua no Maximo " + mquina.verificarNivelAgua()+" Litros");
+        
     }
 }
