@@ -11,7 +11,7 @@ Saída
 Imprima uma única linha contendo o saldo final da conta após todas as operações.
 
 Exemplos
-A tabela abaixo apresenta exemplos de entrada e saída:
+A tabela abaixo apresenta exemplos de entrada e saída :
 
 Entrada	Saída
 100
