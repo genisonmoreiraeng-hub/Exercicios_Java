@@ -7,7 +7,7 @@ Este documento detalha todos os ajustes, correções de dependências, atualiza�
 ## 1. Configuração do Ambiente do Desenvolvedor
 O projeto foi calibrado para rodar nativamente com a seguinte stack de tecnologias:
 * **Apache Maven**: `3.9.16`
-* **Java Version**: `21.0.11 (LTS)` (Oracle Corporation)
+* **Java Version**: `25 (LTS)`
 * **Sistema Operacional**: Windows 11 (amd64)
 * **Codificação Padrão**: UTF-8 (`pt_BR`)
 

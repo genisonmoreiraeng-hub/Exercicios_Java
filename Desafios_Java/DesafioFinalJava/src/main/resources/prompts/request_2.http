@@ -1,0 +1,12 @@
+POST http://localhost:8080/transactions/ai
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="recording-1.m4a"
+Content-Type: audio/mp4
+
+< ./src/test/resources/audio/recording-1.m4a
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+GET http://localhost:8080/transactions/ai
